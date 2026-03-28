@@ -5,7 +5,6 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # ================= Настройки =================
-# Вместо текста в кавычках пишем вот это:
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 GEMINI_KEY = os.getenv("GEMINI_KEY")
 # =============================================
@@ -35,7 +34,6 @@ def get_chat(chat_id):
 
 DANGER_WORDS = ['убийство', 'бомба', 'ЛГБТ', 'докс', 'гей', 'черножопый', 'негр', 'хач', 'чурка']
 
-# Универсальная функция проверки: нужно ли отвечать?
 def should_respond(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str):
     if not text: return False
     is_private = update.message.chat.type == 'private'
@@ -76,7 +74,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     caption = update.message.caption or ""
-    # Проверяем, нужно ли отвечать на фото (те же правила: личка, !бот, тег или реплай)
     if should_respond(update, context, caption) or (update.message.chat.type == 'private'):
         await update.message.chat.send_action(action="typing")
         try:
