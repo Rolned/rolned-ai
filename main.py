@@ -1,11 +1,13 @@
+import os 
 import logging
 import google.generativeai as genai
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # ================= Настройки =================
-BOT_TOKEN = "7924956158:AAERzmfgfYGYFv_zZ-qKl0aTl-VH_qUbhf4"
-GEMINI_KEY = "AIzaSyCuHgvQGQQdRiQ4KqtLBgXUrFdDOX3U2HI"
+# Вместо текста в кавычках пишем вот это:
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+GEMINI_KEY = os.getenv("GEMINI_KEY")
 # =============================================
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
